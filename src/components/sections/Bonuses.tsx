@@ -149,10 +149,11 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
           </p>
           <Button
             size="lg"
-            className="w-full sm:w-auto font-bold py-4 px-8 shadow-button rounded-xl"
+            className="w-full sm:w-auto h-auto min-h-14 font-bold py-4 px-4 sm:px-8 shadow-button rounded-xl text-sm sm:text-lg whitespace-normal text-center leading-snug"
             onClick={onOpenCheckout}
           >
-            CLAIM SYSTEM &amp; ALL 5 BONUSES NOW <ArrowRight className="ml-2 w-5 h-5" />
+            <span>CLAIM SYSTEM &amp; ALL 5 BONUSES NOW</span>
+            <ArrowRight className="ml-2 w-5 h-5 shrink-0 inline-block align-text-bottom" />
           </Button>
         </div>
 
