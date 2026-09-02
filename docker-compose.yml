@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  peptides-landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: peptides-landing-app
+    restart: always
+    ports:
+      - "3000:80"
