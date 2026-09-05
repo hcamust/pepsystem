@@ -15,7 +15,10 @@ import { Guarantee } from '@/components/sections/Guarantee';
 import { Footer } from '@/components/sections/Footer';
 import { StickyMobileCTA } from '@/components/sections/StickyMobileCTA';
 
-const CHECKOUT_URL = 'https://pepsys.impultienda.ar/';
+// Falls back to the live payment page. To test a different link (e.g. a Stripe
+// Payment Link) locally without touching production, set VITE_CHECKOUT_URL in
+// a .env.local file (git-ignored) — see .env.example.
+const CHECKOUT_URL = import.meta.env.VITE_CHECKOUT_URL || 'https://pepsys.impultienda.ar/';
 
 export function App() {
   const heroCtaRef = useRef<HTMLDivElement>(null);
