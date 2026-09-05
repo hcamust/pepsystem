@@ -17,7 +17,7 @@ import { StickyMobileCTA } from '@/components/sections/StickyMobileCTA';
 
 // Falls back to the live payment page. To test a different link (e.g. a Stripe
 // Payment Link) locally without touching production, set VITE_CHECKOUT_URL in
-// a .env.local file (git-ignored) — see .env.example.
+// a .env or .env.local file (both git-ignored) — see .env.example.
 const CHECKOUT_URL = import.meta.env.VITE_CHECKOUT_URL || 'https://pepsys.impultienda.ar/';
 
 export function App() {

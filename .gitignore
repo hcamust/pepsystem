@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# Local env overrides (checkout URL while testing, etc.) — never commit these
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
