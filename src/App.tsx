@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { TopBar } from '@/components/sections/TopBar';
 import { Hero } from '@/components/sections/Hero';
+import { ProductShowcase } from '@/components/sections/ProductShowcase';
 import { ValueStack } from '@/components/sections/ValueStack';
 import { PainGain } from '@/components/sections/PainGain';
 import { HowItWorks } from '@/components/sections/HowItWorks';
@@ -31,6 +32,7 @@ export function App() {
       {/* Main Content Layout */}
       <main className="flex-1">
         <Hero onOpenCheckout={handleOpenCheckout} ctaRef={heroCtaRef} />
+        <ProductShowcase />
         <PainGain />
         <HowItWorks />
         <PeptideCalculator />
