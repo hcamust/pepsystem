@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { TopBar } from '@/components/sections/TopBar';
 import { Hero } from '@/components/sections/Hero';
 import { PainGain } from '@/components/sections/PainGain';
@@ -10,18 +9,13 @@ import { ComparisonTable } from '@/components/sections/ComparisonTable';
 import { Reviews } from '@/components/sections/Reviews';
 import { FAQ } from '@/components/sections/FAQ';
 import { Guarantee } from '@/components/sections/Guarantee';
-import { CheckoutDrawer } from '@/components/sections/CheckoutDrawer';
 import { Footer } from '@/components/sections/Footer';
 
+const CHECKOUT_URL = 'https://pepsys.impultienda.ar/';
+
 export function App() {
-  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-
   const handleOpenCheckout = () => {
-    setIsCheckoutOpen(true);
-  };
-
-  const handleCloseCheckout = () => {
-    setIsCheckoutOpen(false);
+    window.location.href = CHECKOUT_URL;
   };
 
   return (
@@ -45,9 +39,6 @@ export function App() {
 
       {/* Footer */}
       <Footer />
-
-      {/* Interactive Checkout Drawer / Modal */}
-      <CheckoutDrawer isOpen={isCheckoutOpen} onClose={handleCloseCheckout} />
     </div>
   );
 }
