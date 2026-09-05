@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCheckout, ctaRef }) => {
 
         {/* Main Headline */}
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15] max-w-4xl mx-auto font-heading">
-          Master Peptide Protocols in 24 Hours with a <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">Complete System</span> — Explained Simply
+          Master Peptide Protocols with a <span className="bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600 bg-clip-text text-transparent">Complete System</span> — Explained Simply
         </h1>
 
         {/* Subtitle */}
