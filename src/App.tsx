@@ -31,13 +31,13 @@ export function App() {
       {/* Main Content Layout */}
       <main className="flex-1">
         <Hero onOpenCheckout={handleOpenCheckout} ctaRef={heroCtaRef} />
-        <ValueStack onOpenCheckout={handleOpenCheckout} />
         <PainGain />
         <HowItWorks />
         <PeptideCalculator />
         <Modules />
         <Bonuses onOpenCheckout={handleOpenCheckout} />
         <ComparisonTable />
+        <ValueStack onOpenCheckout={handleOpenCheckout} />
         <Reviews />
         <FAQ />
         <Guarantee onOpenCheckout={handleOpenCheckout} />
