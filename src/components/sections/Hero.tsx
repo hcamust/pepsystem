@@ -3,9 +3,10 @@ import { Shield, Star, CheckCircle2, ArrowRight, Zap, BookOpen, Calculator, File
 
 interface HeroProps {
   onOpenCheckout: () => void;
+  ctaRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOpenCheckout }) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenCheckout, ctaRef }) => {
   return (
     <section className="relative pt-8 pb-16 md:pt-14 md:pb-24 overflow-hidden bg-gradient-to-b from-slate-50 via-blue-50/40 to-slate-50 border-b border-slate-200/80">
       {/* Decorative Background Elements */}
@@ -86,7 +87,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenCheckout }) => {
         </div>
 
         {/* CTA Button Group */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+        <div ref={ctaRef} className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
           <Button 
             size="lg" 
             className="w-full sm:w-auto text-lg font-bold py-4 px-8 shadow-button rounded-xl flex items-center justify-center gap-2 group"

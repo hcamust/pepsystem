@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { TopBar } from '@/components/sections/TopBar';
 import { Hero } from '@/components/sections/Hero';
 import { PainGain } from '@/components/sections/PainGain';
@@ -10,10 +11,13 @@ import { Reviews } from '@/components/sections/Reviews';
 import { FAQ } from '@/components/sections/FAQ';
 import { Guarantee } from '@/components/sections/Guarantee';
 import { Footer } from '@/components/sections/Footer';
+import { StickyMobileCTA } from '@/components/sections/StickyMobileCTA';
 
 const CHECKOUT_URL = 'https://pepsys.impultienda.ar/';
 
 export function App() {
+  const heroCtaRef = useRef<HTMLDivElement>(null);
+
   const handleOpenCheckout = () => {
     window.location.href = CHECKOUT_URL;
   };
@@ -25,7 +29,7 @@ export function App() {
 
       {/* Main Content Layout */}
       <main className="flex-1">
-        <Hero onOpenCheckout={handleOpenCheckout} />
+        <Hero onOpenCheckout={handleOpenCheckout} ctaRef={heroCtaRef} />
         <PainGain />
         <HowItWorks />
         <PeptideCalculator />
@@ -39,6 +43,9 @@ export function App() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Floating Mobile CTA (shows once the Hero button scrolls out of view) */}
+      <StickyMobileCTA targetRef={heroCtaRef} onOpenCheckout={handleOpenCheckout} />
     </div>
   );
 }
