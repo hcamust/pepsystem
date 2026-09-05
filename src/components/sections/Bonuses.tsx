@@ -100,7 +100,10 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
                 <span className="flex items-center gap-1">
                   <CheckCircle className="w-4 h-4 text-emerald-600" /> Free Included Today
                 </span>
-                <span className="text-slate-900 uppercase font-extrabold">$0.00</span>
+                <span className="flex items-center gap-1.5">
+                  <span className="text-slate-400 line-through font-bold normal-case">{item.value}</span>
+                  <span className="text-slate-900 uppercase font-extrabold">$0.00</span>
+                </span>
               </div>
             </div>
           ))}
