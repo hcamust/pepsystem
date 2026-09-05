@@ -1,6 +1,11 @@
 import React from 'react';
-import { Gift, Calculator, FileSearch, LineChart, Map, BookMarked, CheckCircle, ArrowRight } from 'lucide-react';
+import { Gift, CheckCircle, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import bonus1Image from '@/assets/images/bonus-1-prime-calculator.webp';
+import bonus2Image from '@/assets/images/bonus-2-smart-buyer.webp';
+import bonus3Image from '@/assets/images/bonus-3-tracking-system.webp';
+import gift1Image from '@/assets/images/gift-1-master-map.webp';
+import gift2Image from '@/assets/images/gift-2-prime-glossary.webp';
 
 interface BonusesProps {
   onOpenCheckout: () => void;
@@ -13,7 +18,7 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
       title: 'Prime Syringe Calculator App',
       value: '$37 Value',
       desc: 'Interactive downloadable spreadsheet (Excel, Google Sheets, LibreOffice) with preset automated formulas for 41 peptides. Never calculate IU syringe units manually again.',
-      icon: <Calculator className="w-6 h-6 text-blue-600" />,
+      image: bonus1Image,
       color: 'border-blue-200 bg-white',
     },
     {
@@ -21,7 +26,7 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
       title: 'Smart Buyer Vetting Guide',
       value: '$29 Value',
       desc: 'How to vet suppliers, verify HPLC purity testing, read Certificates of Analysis (COA), and avoid fake or underdosed lyophilized vials.',
-      icon: <FileSearch className="w-6 h-6 text-blue-600" />,
+      image: bonus2Image,
       color: 'border-blue-200 bg-white',
     },
     {
@@ -29,7 +34,7 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
       title: 'Protocol Tracking System',
       value: '$27 Value',
       desc: 'Custom logging templates (Notion, Printable PDF & Sheets) to track your start dates, body measurements, dosage escalation curves, and results.',
-      icon: <LineChart className="w-6 h-6 text-blue-600" />,
+      image: bonus3Image,
       color: 'border-blue-200 bg-white',
     },
     {
@@ -37,7 +42,7 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
       title: 'Peptide Master Map Chart',
       value: '$19 Value',
       desc: 'Visual at-a-glance decision tree matching specific health or performance goals directly to the exact target peptide in seconds.',
-      icon: <Map className="w-6 h-6 text-emerald-600" />,
+      image: gift1Image,
       color: 'border-emerald-200 bg-emerald-50/40',
     },
     {
@@ -45,7 +50,7 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
       title: 'Essential Peptide Glossary',
       value: '$15 Value',
       desc: 'Plain-English breakdown of 50 technical terms — half-life, lyophilization, reconstitution, mcg vs. IU, receptor affinity, and storage temperatures.',
-      icon: <BookMarked className="w-6 h-6 text-emerald-600" />,
+      image: gift2Image,
       color: 'border-emerald-200 bg-emerald-50/40',
     },
   ];
@@ -53,7 +58,7 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
   return (
     <section className="py-16 md:py-24 bg-slate-50 relative border-b border-slate-200/80">
       <div className="max-w-5xl mx-auto px-4">
-        
+
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-3">
@@ -72,51 +77,66 @@ export const Bonuses: React.FC<BonusesProps> = ({ onOpenCheckout }) => {
           {bonusItems.slice(0, 3).map((item, idx) => (
             <div
               key={idx}
-              className={`rounded-2xl p-6 border shadow-soft hover:shadow-card transition-shadow flex flex-col justify-between ${item.color}`}
+              className={`rounded-2xl border shadow-soft hover:shadow-card transition-shadow flex flex-col overflow-hidden ${item.color}`}
             >
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-bold font-mono text-blue-700 bg-blue-100/80 px-2.5 py-1 rounded-full">
-                    {item.type}
-                  </span>
-                  <span className="text-xs font-bold text-slate-400 line-through">
-                    {item.value}
-                  </span>
+              <img
+                src={item.image}
+                alt={item.title}
+                width={700}
+                height={500}
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-[7/5] object-cover"
+              />
+
+              <div className="p-6 flex flex-col flex-1 justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="text-xs font-bold font-mono text-blue-700 bg-blue-100/80 px-2.5 py-1 rounded-full">
+                      {item.type}
+                    </span>
+                    <span className="text-xs font-bold text-slate-400 line-through">
+                      {item.value}
+                    </span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-slate-900 mb-2 font-heading">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                    {item.desc}
+                  </p>
                 </div>
 
-                <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center mb-4">
-                  {item.icon}
+                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
+                  <span className="flex items-center gap-1">
+                    <CheckCircle className="w-4 h-4 text-emerald-600" /> Free Included Today
+                  </span>
+                  <span className="text-slate-400 line-through font-bold normal-case">{item.value}</span>
                 </div>
-
-                <h3 className="text-xl font-bold text-slate-900 mb-2 font-heading">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-4">
-                  {item.desc}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-700">
-                <span className="flex items-center gap-1">
-                  <CheckCircle className="w-4 h-4 text-emerald-600" /> Free Included Today
-                </span>
-                <span className="text-slate-400 line-through font-bold normal-case">{item.value}</span>
               </div>
             </div>
           ))}
         </div>
 
-        {/* 2 Gifts Horizontal Grid */}
+        {/* 2 Gifts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
           {bonusItems.slice(3, 5).map((item, idx) => (
             <div
               key={idx}
-              className={`rounded-2xl p-6 border shadow-soft hover:shadow-card transition-shadow flex items-start gap-4 ${item.color}`}
+              className={`rounded-2xl border shadow-soft hover:shadow-card transition-shadow overflow-hidden flex flex-col ${item.color}`}
             >
-              <div className="w-12 h-12 rounded-xl bg-emerald-100 border border-emerald-200 flex items-center justify-center shrink-0">
-                {item.icon}
-              </div>
-              <div className="flex-1">
+              <img
+                src={item.image}
+                alt={item.title}
+                width={700}
+                height={500}
+                loading="lazy"
+                decoding="async"
+                className="w-full aspect-[7/5] object-cover"
+              />
+
+              <div className="p-6 flex-1">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-xs font-bold font-mono text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full">
                     {item.type}
