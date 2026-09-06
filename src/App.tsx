@@ -15,9 +15,10 @@ import { Guarantee } from '@/components/sections/Guarantee';
 import { Footer } from '@/components/sections/Footer';
 import { StickyMobileCTA } from '@/components/sections/StickyMobileCTA';
 
-// Falls back to the live payment page. To test a different link (e.g. a Stripe
-// Payment Link) locally without touching production, set VITE_CHECKOUT_URL in
-// a .env or .env.local file (both git-ignored) — see .env.example.
+// CTA buttons send buyers to the live payment page by default. To use the
+// built-in embedded Stripe form instead, set VITE_CHECKOUT_URL=/checkout in a
+// .env / .env.local file (git-ignored) — see .env.example. Production keeps the
+// external page until we decide to switch.
 const CHECKOUT_URL = import.meta.env.VITE_CHECKOUT_URL || 'https://pepsys.impultienda.ar/';
 
 export function App() {

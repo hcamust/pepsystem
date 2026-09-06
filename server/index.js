@@ -5,6 +5,7 @@ import nodemailer from 'nodemailer';
 
 const {
   PORT = 4242,
+  DOMAIN = 'http://localhost:3000',
   STRIPE_SECRET_KEY,
   STRIPE_WEBHOOK_SECRET,
   SMTP_HOST,
@@ -27,7 +28,9 @@ for (const [name, value] of Object.entries({
   if (!value) throw new Error(`Missing required env var: ${name}`);
 }
 
-const stripe = new Stripe(STRIPE_SECRET_KEY);
+const stripe = new Stripe(STRIPE_SECRET_KEY, {
+  apiVersion: '2026-03-25.dahlia; custom_checkout_payment_form_preview=v1',
+});
 
 const transporter = nodemailer.createTransport({
   host: SMTP_HOST,
@@ -92,6 +95,33 @@ app.post(
     res.json({ received: true });
   }
 );
+
+// Creates an embedded Checkout Session for the custom payment form. Returns the
+// session's client_secret as JSON (never a redirect) so the browser SDK can
+// mount the form. Takes no request body — the line item is fixed server-side.
+app.post('/api/create-checkout-session', async (_req, res) => {
+  try {
+    // mode is sample_only: "payment" for the one-time digital product.
+    // line_items is sample_only — replace price_... with a real Stripe Price ID.
+    const session = await stripe.checkout.sessions.create({
+      ui_mode: 'form',
+      billing_address_collection: 'auto',
+      phone_number_collection: { enabled: false },
+      automatic_tax: { enabled: false },
+      submit_type: 'auto',
+      name_collection: { individual: { enabled: true } },
+      integration_identifier: 'custom_embedded_web_0001',
+      mode: 'payment',
+      line_items: [{ price: 'price_1UCTukPJLJfzYi08DxhlpI1S', quantity: 1 }],
+      return_url: `${DOMAIN}/gracias?session_id={CHECKOUT_SESSION_ID}`,
+    });
+
+    res.json({ client_secret: session.client_secret });
+  } catch (err) {
+    console.error('Failed to create Checkout Session:', err.message);
+    res.status(500).json({ error: 'Failed to create Checkout Session' });
+  }
+});
 
 app.get('/api/health', (_req, res) => res.send('ok'));
 

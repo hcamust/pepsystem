@@ -12,6 +12,11 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    host: true
+    host: true,
+    // Forward /api/* to the Express checkout + webhook server (server/index.js)
+    // so the browser can hit it on the same origin during local development.
+    proxy: {
+      '/api': 'http://localhost:4242',
+    },
   }
 })
