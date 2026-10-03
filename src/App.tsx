@@ -19,7 +19,7 @@ import { StickyMobileCTA } from '@/components/sections/StickyMobileCTA';
 // built-in embedded Stripe form instead, set VITE_CHECKOUT_URL=/checkout in a
 // .env / .env.local file (git-ignored) — see .env.example. Production keeps the
 // external page until we decide to switch.
-const CHECKOUT_URL = import.meta.env.VITE_CHECKOUT_URL || 'https://pepsys.impultienda.ar/';
+const CHECKOUT_URL = import.meta.env.VITE_CHECKOUT_URL || 'https://pepsys.impultienda.ar/checkout?p=773404b2-9847-4ffc-b874-5cb47116d42b';
 
 export function App() {
   const heroCtaRef = useRef<HTMLDivElement>(null);
